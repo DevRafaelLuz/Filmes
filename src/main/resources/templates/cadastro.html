@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row" align="center">
                 <div class="col-sm-12">
                     <form th:action="@{/registrar}" th:object="${filme}" method="post">
                         <div>                          
@@ -24,8 +24,8 @@
                             <p>Sinopse: <input type="text" th:field="${filme.sinopse}"/></p>
                             <p>Gênero: <input type="text" th:field="${filme.genero}"/></p>
                             <p>Ano de lançamento: <input type="number" th:field="${filme.anoLancamento}"/></p>
+                            <button type="submit" class="btn btn-outline-success rounded-pill">Cadastrar</button>
                         </div>
-                        <button type="submit" class="btn btn-outline-success rounded-pill">Cadastrar</button>
                     </form>
                 </div>
             </div>
