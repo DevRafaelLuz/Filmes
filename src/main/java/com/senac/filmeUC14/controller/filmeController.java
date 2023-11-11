@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FilmeController {
@@ -35,5 +36,21 @@ public class FilmeController {
         filme.setId(listaFilme.size() + 1);
         listaFilme.add(filme);
         return "redirect:/pagina-listagem";
+    }
+    
+    @GetMapping("/detalhes")
+    public String exibiDetalhesFilme(Model model, @RequestParam String id) {
+        Integer idFilme = Integer.parseInt(id);
+        
+        Filme filmeEncontrado = new Filme();
+        for(Filme f: listaFilme) {
+            if(f.getId() == idFilme) {
+                filmeEncontrado = f;
+                break;
+            }
+        }
+        
+        model.addAttribute("filme", filmeEncontrado);
+        return "detalhes";
     }
 }

@@ -24,6 +24,7 @@
                                 <th>Sinopse</th>
                                 <th>Gênero</th>
                                 <th>Ano de laçamento</th>
+                                <th>Detalhes</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,6 +34,8 @@
                                 <td th:text="${filme.sinopse}"></td>
                                 <td th:text="${filme.genero}"></td>
                                 <td th:text="${filme.anoLancamento}"></td>
+                                <td><a th:href="@{'/detalhes?id=' + ${filme.id}}"<button type="submit" 
+                                    class="btn btn-outline-primary rounded">Exibir detalhes</button></a></td>
                             </tr>
                         </tbody>
                     </table>
