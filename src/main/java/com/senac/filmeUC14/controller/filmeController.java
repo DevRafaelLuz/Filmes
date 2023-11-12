@@ -1,5 +1,6 @@
 package com.senac.filmeUC14.controller;
 
+import com.senac.filmeUC14.model.Analise;
 import com.senac.filmeUC14.model.Filme;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class FilmeController {
     private List<Filme> listaFilme = new ArrayList();
+    private List<Analise> listaAnalise = new ArrayList();
     
     @GetMapping("/pagina-inicial")
     public String ExibirPagInicial() {
@@ -38,6 +40,14 @@ public class FilmeController {
         return "redirect:/pagina-listagem";
     }
     
+    @PostMapping("/registrar-analise")
+    public String recebeAnalise(@ModelAttribute Filme filme, @ModelAttribute Analise analise, Model model) {
+        analise.setId(listaAnalise.size() + 1);
+        analise.setFilme(filme);
+        listaAnalise.add(analise);
+        return "redirect:/pagina-listagem";
+    }
+    
     @GetMapping("/detalhes")
     public String exibiDetalhesFilme(Model model, @RequestParam String id) {
         Integer idFilme = Integer.parseInt(id);
@@ -50,7 +60,16 @@ public class FilmeController {
             }
         }
         
+        Analise analiseEncontrada = new Analise();
+        for (Analise a: listaAnalise) {
+            if (a.getId() == idFilme) {
+                analiseEncontrada = a;
+                break;
+            }
+        }
+        
         model.addAttribute("filme", filmeEncontrado);
+        model.addAttribute("analise", analiseEncontrada);
         return "detalhes";
     }
 }
