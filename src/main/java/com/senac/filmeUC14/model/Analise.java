@@ -22,7 +22,7 @@ public class Analise {
     private Integer id;
     
     @ManyToOne
-    @JoinColumn(name = "idFilme")
+    @JoinColumn(name = "idAnalise")
     private Filme filme;
     private String comentario;
     private int nota;
