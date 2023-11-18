@@ -20,4 +20,16 @@ public class AnaliseService {
     public List<Analise> listar(Integer id) {
         return analiseRepository.findByFilmeId(id);
     }
+    
+    public Analise buscarAnalisePorId(Integer id) {
+        return analiseRepository.findById(id).orElseThrow();
+    }
+    
+    public Analise atualizar(Integer id, Analise analiseEnviada) {
+        Analise analiseEncontrada = buscarAnalisePorId(id);
+        analiseEncontrada.setComentario(analiseEnviada.getComentario());
+        analiseEncontrada.setNota(analiseEnviada.getNota());
+        analiseRepository.save(analiseEncontrada);
+        return analiseEncontrada;
+    }
 }

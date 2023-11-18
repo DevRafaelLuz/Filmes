@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,5 +32,12 @@ public class AnaliseAPIController {
     public ResponseEntity<List> listarAnalises(@PathVariable Integer idAnalise) {
         List<Analise> lista = analiseService.listar(idAnalise);
         return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+    
+    //Atualizar 
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizarAnalise(@PathVariable Integer id, @RequestBody Analise analise) {
+        var analiseAtualizada = analiseService.atualizar(id, analise);
+        return new ResponseEntity<>(analiseAtualizada, HttpStatus.OK);
     }
 }
