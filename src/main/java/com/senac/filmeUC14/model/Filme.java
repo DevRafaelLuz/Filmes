@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Filme {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     
     private String titulo;
     private String sinopse;
