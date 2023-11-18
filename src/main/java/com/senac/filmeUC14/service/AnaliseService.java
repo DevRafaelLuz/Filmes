@@ -32,4 +32,9 @@ public class AnaliseService {
         analiseRepository.save(analiseEncontrada);
         return analiseEncontrada;
     }
+    
+    public void excluir(Integer id) {
+        Analise analiseEncontrada = buscarAnalisePorId(id);
+       analiseRepository.deleteById(analiseEncontrada.getId());
+    }
 }
