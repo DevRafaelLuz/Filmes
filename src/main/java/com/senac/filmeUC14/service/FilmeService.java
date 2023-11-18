@@ -24,4 +24,14 @@ public class FilmeService {
     public Filme buscarPorId(Integer id) {
         return filmeRepository.findById(id).orElseThrow();
     }
+    
+    public Filme atualizar(Integer id, Filme filmeEnviado) {
+        Filme filmeEncontrado = buscarPorId(id);
+        filmeEncontrado.setTitulo(filmeEnviado.getTitulo());
+        filmeEncontrado.setSinopse(filmeEnviado.getSinopse());
+        filmeEncontrado.setGenero(filmeEnviado.getGenero());
+        filmeEncontrado.setAnoLancamento(filmeEnviado.getAnoLancamento());
+        filmeRepository.save(filmeEncontrado);
+        return filmeEncontrado;
+    }
 }
