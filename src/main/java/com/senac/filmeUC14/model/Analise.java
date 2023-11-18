@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class Analise {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     
     @ManyToOne
     @JoinColumn(name = "idFilme")
