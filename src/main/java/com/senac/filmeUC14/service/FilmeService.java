@@ -34,4 +34,9 @@ public class FilmeService {
         filmeRepository.save(filmeEncontrado);
         return filmeEncontrado;
     }
+    
+    public void excluir(Integer id) {
+        Filme filmeEncontrado = buscarPorId(id);
+       filmeRepository.deleteById(filmeEncontrado.getId());
+    }
 }
