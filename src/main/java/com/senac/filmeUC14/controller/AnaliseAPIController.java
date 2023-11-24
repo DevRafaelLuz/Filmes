@@ -48,5 +48,11 @@ public class AnaliseAPIController {
         analiseService.excluir(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @DeleteMapping("/excluirPorFilme/{id}")
+    public ResponseEntity<?> deletarPorFilme(@PathVariable Integer id) {
+        analiseService.excluirTodasAnalisePorFilme(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
         
 }
