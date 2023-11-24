@@ -35,6 +35,12 @@ public class AnaliseService {
     
     public void excluir(Integer id) {
         Analise analiseEncontrada = buscarAnalisePorId(id);
-       analiseRepository.deleteById(analiseEncontrada.getId());
+        analiseRepository.deleteById(analiseEncontrada.getId());
+    }
+    
+    public void excluirTodasAnalisePorFilme(Integer id) {
+        for (Analise a : listar(id)) {
+            excluir(a.getId());
+        }
     }
 }

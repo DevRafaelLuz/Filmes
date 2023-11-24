@@ -24,7 +24,7 @@
                                 <th>Sinopse</th>
                                 <th>Gênero</th>
                                 <th>Ano de laçamento</th>
-                                <th>Detalhes</th>
+                                <th>Operações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,6 +36,10 @@
                                 <td th:text="${filme.anoLancamento}"></td>
                                 <td><a th:href="@{'/detalhes?id=' + ${filme.id}}"<button type="submit" 
                                     class="btn btn-outline-primary rounded">Exibir detalhes</button></a></td>
+                                <td><a th:href="@{'/alterar?id=' + ${filme.id}}"<button type="submit" 
+                                    class="btn btn-outline-primary rounded">Alterar dados</button></a></td>
+                                <td><a th:href="@{'/excluir?id=' + ${filme.id}}"<button type="submit" 
+                                    class="btn btn-outline-danger rounded">Excluir filme</button></a></td>
                             </tr>
                         </tbody>
                     </table>

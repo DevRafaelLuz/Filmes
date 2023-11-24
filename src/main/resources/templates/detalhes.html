@@ -14,14 +14,16 @@
                     <h1 class="text-center"><strong>Detalhes do Filme</strong></h1>
                 </div>
             </div>
-            <div class="row">
+        </div>
+        <div class="container">
+            <div class="row mt-4">
                 <div class="col-sm-12">
                     <p><strong>ID:</strong> <span th:text="${filme.id}"</span></p>
                     <p><strong>Título:</strong> <span th:text="${filme.titulo}"</span></p>
                     <p><strong>Sinopse:</strong> <span th:text="${filme.sinopse}"</span></p>
                     <p><strong>Gênero:</strong> <span th:text="${filme.genero}"</span></p>
                     <p><strong>Ano de lançamento:</strong> <span th:text="${filme.anoLancamento}"</span><p>
-                </div>
+                </div>                
             </div>
             <div class="row">
                 <div class="col-sm-12 fixed-bottom">
@@ -41,15 +43,30 @@
             <div class="row mt-3">
                 <div class="col-sm-6">
                     <form th:action="@{/registrar-analise}" th:object="${analise}" method="post">
-                        <p>Escreva um análise para este filme: <input type="text" th:field="${analise.comentario}"/></p>
-                        <p>Deixe uma nota para este filme: <input type="text" th:field="${analise.nota}"/><p>
+                        <p>Escreva um análise para este filme: <input type="text" th:field="${analise.comentario}" required/></p>
+                        <p>Deixe uma nota para este filme:<input type="text" class="ms-4" th:field="${analise.nota}" required/><p>
                         <input type="hidden" th:field="${filme.id}"/>
                         <p align="center"><input type="submit" class="btn btn-outline-success rounded-pill" value="Enviar Análise"/></p>
                     </form>
                 </div>
                 <div class="col-sm-6 border-start border-black">
-                    <p><strong>Análise:</strong> <span th:text="${analise.comentario}"></span></p>
-                    <p><strong>Nota:</strong> <span th:text="${analise.nota}"></span></p>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Análise</th>
+                                <th>Nota</th>
+                                <th>Operação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="a : ${analises}">
+                                <td><span th:text="${a.comentario}"></span></td>
+                                <td><span th:text="${a.nota}"></span></td>
+                                <td><a th:href="@{'/excluirAnalise?id=' + ${a.id}}"<button type="submit" 
+                                    class="btn btn-outline-danger rounded">Excluir análise</button></a></td>
+                            </tr>
+                        </tbody>
+                    </table>                    
                 </div>
             </div>
         </div>
